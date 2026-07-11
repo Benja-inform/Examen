@@ -17,7 +17,6 @@ stock = {
 }
 
 def leer_opcion():
-    """Valida la opción del menú principal (Indicador 24)"""
     while True:
         try:
             op = int(input("Ingrese una opción: "))
@@ -28,11 +27,9 @@ def leer_opcion():
             print('Debe ingresar un número entero')
 
 def buscar_codigo(codigo, dicc_stock):
-    """Busca si un código existe (Indicador 27 - Validación)"""
     return codigo.upper() in dicc_stock
 
 def unidades_categorias(categoria, dicc_productos, dicc_stock):
-    """Suma y muestra las unidades por categoría (Indicador 8 y 26)"""
     total = 0
     for codigo in dicc_productos:
         if dicc_productos[codigo][1].lower() == categoria.lower():
@@ -41,7 +38,6 @@ def unidades_categorias(categoria, dicc_productos, dicc_stock):
     print(f"El total de unidades disponibles para la categoría '{categoria}' es: {total}")
 
 def busqueda_precio(p_min, p_max, dicc_productos, dicc_stock):
-    """Busca productos dentro de un rango de precio con stock activo (Indicador 18)"""
     lista = []
     for codigo in dicc_stock:
         precio = dicc_stock[codigo][0]
@@ -58,7 +54,6 @@ def busqueda_precio(p_min, p_max, dicc_productos, dicc_stock):
         print('Los productos encontrados son:', lista)
 
 def actualizar_precios(codigo, nuevo_precio, dicc_stock):
-    """Modifica el precio usando el resultado de la búsqueda (Indicador 20 y 31)"""
     codigo = codigo.upper()
     if buscar_codigo(codigo, dicc_stock):
         dicc_stock[codigo][0] = nuevo_precio
@@ -66,7 +61,7 @@ def actualizar_precios(codigo, nuevo_precio, dicc_stock):
     return False
 
 def agregar_productos(codigo, nombre, categoria, marca, peso_kg, es_importado, es_para_cachorro, precio, unidades, dicc_productos, dicc_stock):
-    """Inserta un nuevo registro garantizando no duplicar claves (Indicador 19)"""
+
     codigo = codigo.upper()
     if buscar_codigo(codigo, dicc_stock):
         return False
@@ -76,7 +71,7 @@ def agregar_productos(codigo, nombre, categoria, marca, peso_kg, es_importado, e
     return True
 
 def eliminar_producto(codigo, dicc_productos, dicc_stock):
-    """Elimina registros vinculados basándose en la búsqueda (Indicador 21 y 30)"""
+   
     codigo = codigo.upper()
 
     if buscar_codigo(codigo, dicc_stock):
